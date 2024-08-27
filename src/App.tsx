@@ -1,12 +1,11 @@
 import "./App.css";
+import MainLayOut from "./components/Layout/MainLayOut";
 
 function App() {
   return (
-    <>
-      <div>
-        <h2>hello</h2>
-      </div>
-    </>
+    <div className=" min-h-screen w-full ">
+      <MainLayOut />
+    </div>
   );
 }
 

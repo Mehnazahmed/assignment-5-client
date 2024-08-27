@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TFacility } from "../../types";
+import { TFacility } from "../../../types";
 
 type TInitialState = {
   facilities: TFacility[];
