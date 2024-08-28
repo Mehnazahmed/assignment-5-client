@@ -1,66 +1,55 @@
 import CreateAdmin from "@/pages/Admin/CreateAdmin";
-
 import UserDetails from "@/pages/User/UserDetails";
 import AllUsers from "@/pages/User/AllUsers";
-import AdminDashboard from "@/pages/Admin/AdminDashboard";
+import CreateFacility from "@/pages/Admin/CreateFacility";
 import Facilities from "@/pages/User/Facilities/facilities";
 import FacilityDetails from "@/pages/User/Facilities/FacilityDetails";
 import Bookings from "@/pages/User/Bookings/Bookings";
-import CreateFacility from "@/pages/Admin/CreateFacility";
+import AdminInfo from "@/pages/Admin/AdminInfo";
 
-export const adminPaths = [
+export const adminRoutes = [
   {
-    name: "Dashboard",
-    path: "dashboard",
-    element: <AdminDashboard />,
-  },
-
-  {
-    name: "User Management",
-    children: [
-      {
-        name: "Users",
-        path: "users",
-        element: <AllUsers />,
-      },
-      {
-        path: "users/:userId",
-        element: <UserDetails />,
-      },
-      {
-        name: "Add Admin",
-        path: "create-admin",
-        element: <CreateAdmin />,
-      },
-    ],
+    path: "/adminDashboard",
+    element: <AdminInfo />,
   },
   {
-    name: "Facility Management:",
-    children: [
-      {
-        name: "Facilities",
-        path: "facilities",
-        element: <Facilities />,
-      },
-      {
-        name: "Add Facility",
-        path: "facility",
-        element: <CreateFacility />,
-      },
-      {
-        path: "facilities/:facilityId",
-        element: <FacilityDetails />,
-      },
-    ],
+    path: "/adminDashboard/users",
+    element: <AllUsers />,
   },
   {
-    name: "Booking Management:",
-    children: [
-      {
-        name: "Bookings",
-        path: "bookings",
-        element: <Bookings />,
-      },
-    ],
+    path: "/adminDashboard/users/:userId",
+    element: <UserDetails />,
+  },
+  {
+    path: "/adminDashboard/create-admin",
+    element: <CreateAdmin />,
+  },
+  {
+    path: "/adminDashboard/facilities",
+    element: <Facilities />,
+  },
+  {
+    path: "/adminDashboard/facility",
+    element: <CreateFacility />,
+  },
+  {
+    path: "/adminDashboard/facilities/:facilityId",
+    element: <FacilityDetails />,
+  },
+  {
+    path: "/adminDashboard/bookings",
+    element: <Bookings />,
   },
 ];
+
+// export const superAdminRoutes = [
+//   {
+//     index: true,
+//     element: <AdminInfo />,
+//   },
+//   {
+//     path: "/superAdminDashboard",
+//     element: <AdminDashboard />,
+//     children: adminRoutes,
+//   },
+// ];

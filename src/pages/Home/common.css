@@ -74,6 +74,33 @@
   bottom: -60px;
 }
 
+/* login button */
+.login-button {
+  background-color: #fff;
+  color: #f95924;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: rgb(9, 20, 35);
+  border-color: #f95924;
+  color: white; /* Optional to change text color on hover */
+}
+/*  */
+
+/*  */
+.list-item {
+  list-style-type: none;
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+.list-item:hover {
+  color: #f95924;
+}
+
 @media (min-width: 768px) {
   .steps-container {
     flex-direction: row;

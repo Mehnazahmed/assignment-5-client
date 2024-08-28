@@ -1,0 +1,16 @@
+/* Sidebar Link Styles */
+.sidebar-link {
+  color: #ffffff; /* Default color */
+  text-decoration: none; /* Remove underline */
+}
+
+.sidebar-link:hover {
+  color: #f95924; /* Change color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.sidebar-link-active {
+  color: #f95924; /* Active color */
+  font-weight: bold; /* Make it bold when active */
+  text-decoration: underline; /* Add underline when active */
+}

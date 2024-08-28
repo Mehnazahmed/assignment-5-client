@@ -1,26 +1,23 @@
 import UserDashboard from "@/pages/User/UserDashboard";
 import BookingsById from "@/pages/User/Bookings/BookingsById";
 import BookingsDetails from "@/pages/User/Bookings/BookingsDetails";
+import UserInfo from "@/pages/User/UserInfo";
 
-export const userPaths = [
+export const userRoutes = [
   {
-    name: "Dashboard",
-    path: "dashboard",
+    path: "/userDashboard",
+    element: <UserInfo />,
+  },
+  {
+    path: "/userDashboard/dashboard",
     element: <UserDashboard />,
   },
-
   {
-    name: "Bookings",
-    children: [
-      {
-        name: "My Bookings",
-        path: "bookingsById",
-        element: <BookingsById />,
-      },
-      {
-        path: "bookings/:userId",
-        element: <BookingsDetails />,
-      },
-    ],
+    path: "/userDashboard/bookingsById",
+    element: <BookingsById />,
+  },
+  {
+    path: "/userDashboard/bookings/:userId",
+    element: <BookingsDetails />,
   },
 ];

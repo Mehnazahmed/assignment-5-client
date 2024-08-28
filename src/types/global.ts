@@ -1,4 +1,5 @@
 import { BaseQueryApi } from "@reduxjs/toolkit/query";
+import { JwtPayload } from "jwt-decode";
 
 export type TError = {
   data: {
@@ -30,3 +31,9 @@ export type TQueryParam = {
   name: string;
   value: boolean | React.Key;
 };
+
+export const RoleOptions = ["admin", "user"];
+
+export interface CustomJwtPayload extends JwtPayload {
+  role: string;
+}

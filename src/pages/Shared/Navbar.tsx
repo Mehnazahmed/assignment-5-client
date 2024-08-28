@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { useAppSelector } from "@/redux/hooks";
-import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { logOut, useCurrentToken } from "@/redux/features/auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
+import "../Home/common.css";
 
 const Navbar = () => {
   const token = useAppSelector(useCurrentToken);
   // const user = useAppSelector(selectCurrentUser);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
 
   let user;
 
@@ -56,6 +62,38 @@ const Navbar = () => {
                 Facilities
               </NavLink>
             </li>
+            {user?.role == "admin" && (
+              <li>
+                <NavLink
+                  to="/adminDashboard"
+                  className={({ isActive }) =>
+                    `m-6 text-white ${
+                      isActive
+                        ? "text-[#F95924] border-b-2 border-[#F95924]"
+                        : "hover:text-[#F95924]"
+                    }`
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+            {user?.role == "user" && (
+              <li>
+                <NavLink
+                  to="/userDashboard"
+                  className={({ isActive }) =>
+                    `m-6 text-white ${
+                      isActive
+                        ? "text-[#F95924] border-b-2 border-[#F95924]"
+                        : "hover:text-[#F95924]"
+                    }`
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink
                 to="/register"
@@ -71,19 +109,17 @@ const Navbar = () => {
               </NavLink>
             </li>
             {user?.role ? (
-              <li>
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    `m-6 text-white ${
-                      isActive
-                        ? "text-[#F95924] border-b-2 border-[#F95924]"
-                        : "hover:text-[#F95924]"
-                    }`
-                  }
-                >
-                  Log Out
-                </NavLink>
+              <li
+                className="text-white list-item"
+                onClick={handleLogout}
+                style={{
+                  listStyleType: "none",
+                  cursor: "pointer",
+
+                  marginRight: "3rem",
+                }}
+              >
+                Logout
               </li>
             ) : (
               <li>
@@ -105,7 +141,6 @@ const Navbar = () => {
         </nav>
       </div>
 
-      {/* Additional Mobile Menu (if needed) */}
       {isMobileMenuOpen && (
         <nav className="md:hidden">
           <ul className="flex flex-col space-y-4 mt-2">
@@ -124,6 +159,38 @@ const Navbar = () => {
                 Facilities
               </NavLink>
             </li>
+            {user?.role == "admin" && (
+              <li>
+                <NavLink
+                  to="/adminDashboard"
+                  className={({ isActive }) =>
+                    `m-6 text-white ${
+                      isActive
+                        ? "text-[#F95924] border-b-2 border-[#F95924]"
+                        : "hover:text-[#F95924]"
+                    }`
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+            {user?.role == "user" && (
+              <li>
+                <NavLink
+                  to="/userDashboard"
+                  className={({ isActive }) =>
+                    `m-6 text-white ${
+                      isActive
+                        ? "text-[#F95924] border-b-2 border-[#F95924]"
+                        : "hover:text-[#F95924]"
+                    }`
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink
                 to="/register"
@@ -140,19 +207,17 @@ const Navbar = () => {
               </NavLink>
             </li>
             {user?.role ? (
-              <li>
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    `m-6 text-white ${
-                      isActive
-                        ? "text-[#F95924] border-b-2 border-[#F95924]"
-                        : "hover:text-[#F95924]"
-                    }`
-                  }
-                >
-                  Log Out
-                </NavLink>
+              <li
+                className="text-white list-item"
+                onClick={handleLogout}
+                style={{
+                  listStyleType: "none",
+                  cursor: "pointer",
+
+                  marginRight: "3rem",
+                }}
+              >
+                Logout
               </li>
             ) : (
               <li>

@@ -4,7 +4,7 @@ import PopularFacilities from "./PopolarFacilities";
 
 const Home = () => {
   return (
-    <div className="bg-[#212529] mx-auto  ">
+    <div className="bg-[#212529] mx-auto min-h-full w-full   ">
       <Banner />
       <PopularFacilities />
       <HowItWorks />

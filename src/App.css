@@ -1,0 +1,33 @@
+/* App.css */
+
+.sidebar-link {
+  color: #fff;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.sidebar-link:hover {
+  color: #f95924;
+}
+
+.ant-menu-item-selected .sidebar-link {
+  color: #ec764e !important;
+
+  font-weight: bold;
+}
+.ant-menu-item-selected .sidebar-link:hover {
+  color: #ec764e !important;
+  font-weight: bold;
+}
+
+.sidebar-menu .ant-menu-item-selected {
+  background-color: rgba(241, 184, 165, 0.1) !important;
+}
+
+.sidebar-menu .ant-menu-submenu-title:hover {
+  color: #f95924;
+}
+
+.sidebar-menu .ant-menu-item:hover {
+  background-color: rgba(249, 89, 36, 0.1) !important;
+  color: #f95924 !important;
+}

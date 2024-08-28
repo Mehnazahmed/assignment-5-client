@@ -1,9 +1,10 @@
-import { Button, Layout } from "antd";
+import { Layout } from "antd";
 import Sidebar from "./Sidebar";
 import { useAppDispatch } from "../../redux/hooks";
 
 import { Outlet } from "react-router-dom";
 import { logOut } from "../../redux/features/auth/authSlice";
+import "../../pages/Home/common.css";
 const { Header, Content } = Layout;
 
 const DashBoardLayout = () => {
@@ -17,14 +18,40 @@ const DashBoardLayout = () => {
     <Layout style={{ height: "100%" }}>
       <Sidebar />
       <Layout>
-        <Header>
-          <Button onClick={handleLogout}>Logout</Button>{" "}
+        <Header
+          style={{
+            fontSize: "1rem",
+            backgroundColor: "rgb(9,20,35)",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          <li
+            className="text-white list-item "
+            onClick={handleLogout}
+            style={{
+              listStyleType: "none",
+              cursor: "pointer",
+              padding: "0.5rem 1rem",
+            }}
+          >
+            Logout
+          </li>{" "}
         </Header>
-        <Content style={{ margin: "24px 16px 0" }}>
+        <Content
+          style={{
+            border: "1px solid #F95924",
+            borderColor: "fff",
+            backgroundColor: "rgb(9,20,35)",
+          }}
+        >
           <div
             style={{
               padding: 24,
+
               minHeight: 360,
+              backgroundColor: "rgb(9,20,35)",
             }}
           >
             <Outlet />

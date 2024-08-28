@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export type TRoute = {
-  path: string;
+  path?: string;
   element: ReactNode;
 };
 export type TSidebarItems =

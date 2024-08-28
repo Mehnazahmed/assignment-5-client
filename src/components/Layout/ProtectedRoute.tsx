@@ -11,26 +11,22 @@ type TProtectedRoute = {
 
 const ProtectedRoute = ({ children, role }: TProtectedRoute) => {
   const token = useAppSelector(useCurrentToken);
-  // const user = useAppSelector(selectCurrentUser);
+  const dispatch = useAppDispatch();
 
   let user;
 
   if (token) {
     user = verifyToken(token);
   }
-  console.log(user);
 
-  const dispatch = useAppDispatch();
-
-  if (role !== undefined && role !== user?.role) {
-    dispatch(logOut());
-    return <Navigate to="/login" replace={true} />;
-  }
-  if (!token) {
+  if (!token || (role && user?.role !== role)) {
+    if (user?.role !== role) {
+      dispatch(logOut());
+    }
     return <Navigate to="/login" replace={true} />;
   }
 
-  return children;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
