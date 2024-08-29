@@ -50,7 +50,7 @@ const Navbar = () => {
           <ul className="md:flex md:space-x-2">
             <li>
               <NavLink
-                to="/facilities"
+                to="/facilitylist"
                 className={({ isActive }) =>
                   `m-6 text-white ${
                     isActive
@@ -146,7 +146,7 @@ const Navbar = () => {
           <ul className="flex flex-col space-y-4 mt-2">
             <li>
               <NavLink
-                to="/facilities"
+                to="/facilitylist"
                 className={({ isActive }) =>
                   `block ml-6 text-white ${
                     isActive

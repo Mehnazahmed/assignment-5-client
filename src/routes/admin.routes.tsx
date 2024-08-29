@@ -2,10 +2,10 @@ import CreateAdmin from "@/pages/Admin/CreateAdmin";
 import UserDetails from "@/pages/User/UserDetails";
 import AllUsers from "@/pages/User/AllUsers";
 import CreateFacility from "@/pages/Admin/CreateFacility";
-import Facilities from "@/pages/User/Facilities/facilities";
 import FacilityDetails from "@/pages/User/Facilities/FacilityDetails";
 import Bookings from "@/pages/User/Bookings/Bookings";
 import AdminInfo from "@/pages/Admin/AdminInfo";
+import AllFacilities from "@/pages/User/Facilities/AllFacilities";
 
 export const adminRoutes = [
   {
@@ -24,13 +24,14 @@ export const adminRoutes = [
     path: "/adminDashboard/create-admin",
     element: <CreateAdmin />,
   },
+
   {
-    path: "/adminDashboard/facilities",
-    element: <Facilities />,
+    path: "/adminDashboard/create-facility",
+    element: <CreateFacility />,
   },
   {
-    path: "/adminDashboard/facility",
-    element: <CreateFacility />,
+    path: "/adminDashboard/allFacilities",
+    element: <AllFacilities />,
   },
   {
     path: "/adminDashboard/facilities/:facilityId",

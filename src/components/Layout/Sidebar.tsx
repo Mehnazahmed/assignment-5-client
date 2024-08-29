@@ -3,7 +3,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { TUser, useCurrentToken } from "@/redux/features/auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
 import { Link, useLocation } from "react-router-dom";
-import "../../App.css"; // Ensure your custom CSS is imported
+import "../../App.css";
 
 const { Sider } = Layout;
 
@@ -69,7 +69,7 @@ const Sidebar = () => {
                 key: "3-1",
                 label: (
                   <Link
-                    to="/adminDashboard/facilities"
+                    to="/adminDashboard/allFacilities"
                     className="sidebar-link"
                   >
                     Facilities

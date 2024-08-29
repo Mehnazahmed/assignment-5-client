@@ -12,6 +12,9 @@ import { adminRoutes } from "./admin.routes";
 
 import { userRoutes } from "./user.routes";
 import { createBrowserRouter } from "react-router-dom";
+import Facilities from "@/pages/User/Facilities/Facilities";
+import FacilityList from "@/pages/User/Facilities/FacilityList";
+import FacilityDetails from "@/pages/User/Facilities/FacilityDetails";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +41,18 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/facilities",
+        element: <Facilities />,
+      },
+      {
+        path: "/facilitylist",
+        element: <FacilityList />,
+      },
+      {
+        path: "/facility/:id",
+        element: <FacilityDetails />,
       },
       {
         path: "*",

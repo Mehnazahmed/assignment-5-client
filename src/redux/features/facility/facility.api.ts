@@ -1,4 +1,4 @@
-import { TQueryParam, TResponseRedux } from "@/types/global";
+import { TResponseRedux } from "@/types/global";
 
 import { TFacility } from "@/types/facility.type";
 import { baseApi } from "@/redux/api/baseApi";
@@ -6,19 +6,10 @@ import { baseApi } from "@/redux/api/baseApi";
 const facilityApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllFacilities: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args) {
-          args.forEach((item: TQueryParam) => {
-            params.append(item.name, item.value as string);
-          });
-        }
-
+      query: () => {
         return {
           url: "/facility",
           method: "GET",
-          params: params,
         };
       },
       providesTags: ["facilities"],
@@ -28,6 +19,12 @@ const facilityApi = baseApi.injectEndpoints({
           meta: response.meta,
         };
       },
+    }),
+    getFacilityById: builder.query({
+      query: (id) => ({
+        method: "GET",
+        url: `/facility/${id}`,
+      }),
     }),
     addFacility: builder.mutation({
       query: (data) => ({
@@ -60,4 +57,5 @@ export const {
   useAddFacilityMutation,
   useUpdateFacilityMutation,
   useDeleteFacilityMutation,
+  useGetFacilityByIdQuery,
 } = facilityApi;

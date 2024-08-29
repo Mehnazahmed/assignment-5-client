@@ -19,8 +19,8 @@ const steps = [
   },
   {
     id: 3,
-    title: "Select a Facility",
-    description: "Choose the best facility accosding to your choice.",
+    title: "Book a Facility",
+    description: "Choose the best facility according to your choice.",
     icon: "../../../public/select.svg", // Example icon
   },
   // Add more steps as needed
@@ -32,7 +32,7 @@ const HowItWorks = () => (
       className="title"
       style={{ fontFamily: "'Fira Sans Extra Condensed', sans-serif" }}
     >
-      How It Works
+      How It <span style={{ color: "#F95924" }}>Works</span>
     </h1>
     <div className="steps-container">
       {steps.map((step, index) => (

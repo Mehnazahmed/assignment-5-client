@@ -11,9 +11,9 @@
   transition: color 0.3s ease;
 }
 
-.title:hover {
+/* .title:hover {
   color: #f95924;
-}
+} */
 
 .steps-container {
   display: flex;

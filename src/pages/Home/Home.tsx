@@ -1,6 +1,6 @@
+import PopularFacilities from "../User/Facilities/PopularFacilities";
 import Banner from "./Banner";
 import HowItWorks from "./HowItWorks";
-import PopularFacilities from "./PopolarFacilities";
 
 const Home = () => {
   return (
