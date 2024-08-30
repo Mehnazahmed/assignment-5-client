@@ -1,26 +1,17 @@
-import { TQueryParam, TResponseRedux } from "@/types/global";
+import { TResponseRedux } from "@/types/global";
 import { baseApi } from "../../api/baseApi";
-import { TUser } from "../auth/authSlice";
+import { TUser } from "@/types/user.type";
 
 const userManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query({
-      query: (args) => {
-        console.log(args);
-        const params = new URLSearchParams();
-
-        if (args) {
-          args.forEach((item: TQueryParam) => {
-            params.append(item.name, item.value as string);
-          });
-        }
-
+      query: () => {
         return {
           url: "/users",
           method: "GET",
-          params: params,
         };
       },
+      providesTags: ["users"],
       transformResponse: (response: TResponseRedux<TUser[]>) => {
         return {
           data: response.data,

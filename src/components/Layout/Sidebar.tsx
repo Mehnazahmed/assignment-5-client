@@ -9,7 +9,7 @@ const { Sider } = Layout;
 
 const userRole = {
   ADMIN: "admin",
-  SUPERADMIN: "superAdmin",
+
   USER: "user",
 };
 
@@ -43,7 +43,7 @@ const Sidebar = () => {
               {
                 key: "2-1",
                 label: (
-                  <Link to="/adminDashboard/users" className="sidebar-link">
+                  <Link to="/adminDashboard/allusers" className="sidebar-link">
                     Users
                   </Link>
                 ),
@@ -96,7 +96,10 @@ const Sidebar = () => {
               {
                 key: "4-1",
                 label: (
-                  <Link to="/adminDashboard/bookings" className="sidebar-link">
+                  <Link
+                    to="/adminDashboard/allbookings"
+                    className="sidebar-link"
+                  >
                     Bookings
                   </Link>
                 ),

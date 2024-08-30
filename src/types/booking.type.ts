@@ -1,6 +1,7 @@
 export type TBookingStatus = "confirmed" | "unconfirmed" | "canceled";
 export interface TBooking {
-  date: Date;
+  _id?: string;
+  date: string;
   startTime: string;
   endTime: string;
   user: string;

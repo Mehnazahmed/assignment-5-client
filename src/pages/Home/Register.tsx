@@ -15,9 +15,9 @@ import { toast } from "sonner";
 
 const { Title } = Typography;
 const userDefaultValues = {
-  name: "oreo",
-  email: "oreo@example.com",
-  password: "oreo123",
+  name: "miki",
+  email: "miki@example.com",
+  password: "miki123",
   phone: "555-123-4567",
   //   profileImg: "/images/default-profile.png",
   role: "user", // Default role

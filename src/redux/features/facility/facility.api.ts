@@ -35,13 +35,17 @@ const facilityApi = baseApi.injectEndpoints({
       invalidatesTags: ["facilities"],
     }),
     updateFacility: builder.mutation({
-      query: (args) => ({
-        url: `/facility/${args.id}`,
-        method: "PUT",
-        body: args.data,
-      }),
+      query: ({ id, ...rest }) => {
+        console.log(rest);
+        return {
+          url: `/facility/${id}`,
+          method: "PUT",
+          body: rest,
+        };
+      },
       invalidatesTags: ["facilities"],
     }),
+
     deleteFacility: builder.mutation({
       query: (id) => ({
         url: `/facility/${id}`,

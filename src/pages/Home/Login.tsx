@@ -75,8 +75,7 @@ const Login = () => {
           <CustomInput type="password" name="password" label="Password:" />
 
           <Button
-           type="submit"
-            
+            type="submit"
             className="bg-white w-full text-[#F95924] hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"
           >
             Log In
