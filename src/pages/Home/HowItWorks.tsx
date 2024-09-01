@@ -15,15 +15,14 @@ const steps = [
     id: 2,
     title: "Browse Facilities",
     description: "Explore available sports facilities.",
-    icon: "../../../public/facilities.jpg", // Example icon
+    icon: "../../../public/facilities.jpg",
   },
   {
     id: 3,
     title: "Book a Facility",
     description: "Choose the best facility according to your choice.",
-    icon: "../../../public/select.svg", // Example icon
+    icon: "../../../public/select.svg",
   },
-  // Add more steps as needed
 ];
 
 const HowItWorks = () => (

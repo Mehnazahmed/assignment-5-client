@@ -6,19 +6,10 @@ import { TBooking } from "@/types/booking.type";
 const reviewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllReviews: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args) {
-          args.forEach((item: TQueryParam) => {
-            params.append(item.name, item.value as string);
-          });
-        }
-
+      query: () => {
         return {
           url: "/reviews",
           method: "GET",
-          params: params,
         };
       },
       providesTags: ["reviews"],

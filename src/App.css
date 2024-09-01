@@ -85,3 +85,52 @@
 .learn-more-button:hover {
   background-color: #e65c00;
 }
+
+/* slider */
+.feedback-slider-container {
+  padding: 50px;
+  background: rgb(9, 20, 35);
+}
+
+.custom-carousel .ant-carousel .slick-dots-top {
+  top: -40px;
+}
+
+.feedback-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-card {
+  width: 70%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid #f95924;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: #ffffff;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+}
+
+.user-name {
+  font-size: 1.5rem;
+  color: rgb(9, 20, 35);
+  font-weight: bold;
+}
+
+.rating-stars {
+  margin-bottom: 15px;
+}
+
+.feedback-comment {
+  font-size: 1.3rem;
+  color: #333;
+  line-height: 1.5;
+}

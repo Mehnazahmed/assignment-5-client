@@ -1,6 +1,7 @@
 import PopularFacilities from "../User/Facilities/PopularFacilities";
 import Banner from "./Banner";
 import HowItWorks from "./HowItWorks";
+import Reviews from "./Reviews/Reviews";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       <PopularFacilities />
       <HowItWorks />
+      <Reviews />
     </div>
   );
 };
