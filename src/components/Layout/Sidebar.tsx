@@ -24,7 +24,7 @@ const Sidebar = () => {
     user = verifyToken(token);
   }
 
-  // Define sidebar items based on user role
+  //  sidebar items based on user role
   const sidebarItems = (() => {
     switch ((user as CustomJwtPayload).role) {
       case userRole.ADMIN:
@@ -121,7 +121,7 @@ const Sidebar = () => {
           {
             key: "2",
             label: (
-              <Link to="bookings/:userEmail" className="sidebar-link">
+              <Link to="/userDashboard/myBookings" className="sidebar-link">
                 My Bookings
               </Link>
             ),

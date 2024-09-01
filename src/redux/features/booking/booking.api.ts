@@ -20,9 +20,9 @@ const bookingApi = baseApi.injectEndpoints({
         };
       },
     }),
-    getBookingsByEmail: builder.query({
-      query: (userEmail) => ({
-        url: `/bookings/${userEmail}`,
+    getSingleBooking: builder.query({
+      query: (id) => ({
+        url: `/bookings/${id}`,
         method: "GET",
       }),
     }),
@@ -54,7 +54,7 @@ const bookingApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllBookingsQuery,
-  useGetBookingsByEmailQuery,
+  useGetSingleBookingQuery,
   useCreateBookingMutation,
   useUpdateBookingMutation,
   useDeleteBookingMutation,
