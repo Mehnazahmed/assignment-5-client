@@ -15,10 +15,10 @@ const { Title } = Typography;
 
 const Login = () => {
   const defaultUser = {
-    email: "mehnaz@gmail.com",
-    password: "Super123",
-    // email: "oreo@example.com",
-    // password: "oreo123",
+    // email: "mehnaz@gmail.com",
+    // password: "Super123",
+    email: "oreo@example.com",
+    password: "oreo123",
   };
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

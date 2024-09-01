@@ -12,7 +12,6 @@ import { useState, FormEvent } from "react";
 import Swal from "sweetalert2";
 import { useUpdateFacilityMutation } from "@/redux/features/facility/facility.api";
 import { TFacility } from "@/types/facility.type";
-import { useNavigate } from "react-router-dom";
 
 const UpdateFacilityModal = ({
   facility,
@@ -167,12 +166,7 @@ const UpdateFacilityModal = ({
               />
             </div>
           </div>
-          {/* <Button
-            type="submit"
-            className="ml-36 rounded-lg bg-white text-[#F95924] hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"
-          >
-            Update Facility
-          </Button> */}
+
           <button
             className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 ml-36 rounded-lg bg-white text-[#F95924] hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"
             type="submit"

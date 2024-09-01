@@ -53,6 +53,12 @@ const facilityApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["facilities"],
     }),
+    getAvailableSlots: builder.query({
+      query: ({ date, facilityId }) => ({
+        method: "GET",
+        url: `/check-availability?date=${date}&facility=${facilityId}`,
+      }),
+    }),
   }),
 });
 
@@ -62,4 +68,5 @@ export const {
   useUpdateFacilityMutation,
   useDeleteFacilityMutation,
   useGetFacilityByIdQuery,
+  useGetAvailableSlotsQuery,
 } = facilityApi;

@@ -21,13 +21,12 @@ const AllBookings = () => {
 
   const formatDate = (date: string) => {
     const d = new Date(date);
-    return d.toLocaleDateString(); // Formats as YYYY-MM-DD by default
+    return d.toLocaleDateString();
   };
 
   const formatTime = (time: string) => {
-    // Convert time string to Date object for formatting
     const t = new Date(`1970-01-01T${time}`);
-    return t.toLocaleTimeString(); // Formats as HH:MM:SS AM/PM by default
+    return t.toLocaleTimeString();
   };
 
   const tableRows = bookings?.data?.map((booking: TBooking) => (
@@ -39,10 +38,18 @@ const AllBookings = () => {
       <TableCell className="text-white">
         {formatTime(booking.endTime)}
       </TableCell>
-      <TableCell className="text-white">{booking.user}</TableCell>
-      <TableCell className="text-white">{booking.facility}</TableCell>
+
+      <TableCell className="text-white">
+        {booking.user.name || "Unknown User"}
+      </TableCell>
+
+      <TableCell className="text-white">
+        {booking.facility.name || "Unknown Facility"}
+      </TableCell>
       <TableCell className="text-white">{booking.payableAmount}</TableCell>
-      <TableCell className="text-white">{booking.isBooked}</TableCell>
+      <TableCell className="text-white">
+        {booking.isBooked ? "Booked" : "Not Booked"}
+      </TableCell>
     </TableRow>
   ));
 

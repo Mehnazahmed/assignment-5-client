@@ -34,6 +34,16 @@ const FacilityCard: React.FC<FacilityCardProps> = ({ facility }) => {
                   marginBottom: "10px",
                 }}
               >
+                <span style={{ color: "#F95924" }}>{facility.name}</span>
+              </h1>
+              <h1
+                style={{
+                  fontSize: "15px",
+
+                  color: "#fff",
+                  marginBottom: "10px",
+                }}
+              >
                 Location:{" "}
                 <span style={{ color: "#F95924" }}>{facility.location}</span>
               </h1>

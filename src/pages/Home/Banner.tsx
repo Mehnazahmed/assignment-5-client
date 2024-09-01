@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -19,9 +20,10 @@ const Banner = () => {
           enjoy an exceptional <span className="text-[#F95924]">sports</span>{" "}
           experience.
         </h1>
+
         <Button
           className="bg-white text-[#F95924] hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"
-          onClick={() => (window.location.href = "/book-now")}
+          onClick={() => (window.location.href = "/facilities")}
         >
           Book Now
         </Button>

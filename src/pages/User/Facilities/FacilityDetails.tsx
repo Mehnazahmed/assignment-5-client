@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useGetFacilityByIdQuery } from "@/redux/features/facility/facility.api";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const FacilityDetails = () => {
   const { id } = useParams();
@@ -50,9 +50,14 @@ const FacilityDetails = () => {
               </p>
             </div>
             <div className="mb-4">
-              <Button className="bg-white text-[#F95924] hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors">
-                Book Facility
-              </Button>
+              <Link
+                to="/userDashboard/bookFacility"
+                state={{ facility: facility?.data }}
+              >
+                <Button className="bg-white text-[#F95924] hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors">
+                  Book Facility
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

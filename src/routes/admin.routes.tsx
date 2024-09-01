@@ -4,8 +4,9 @@ import AllUsers from "@/pages/User/AllUsers";
 import CreateFacility from "@/pages/Admin/CreateFacility";
 
 import Bookings from "@/pages/User/Bookings/Bookings";
-import AdminInfo from "@/pages/Admin/AdminInfo";
+
 import AllFacilities from "@/pages/User/Facilities/AllFacilities";
+import AdminInfo from "@/pages/Admin/AdminInfo";
 
 export const adminRoutes = [
   {
