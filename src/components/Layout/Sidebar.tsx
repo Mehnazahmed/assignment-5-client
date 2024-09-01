@@ -1,9 +1,10 @@
 import { Layout, Menu } from "antd";
 import { useAppSelector } from "../../redux/hooks";
-import { TUser, useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
 import { Link, useLocation } from "react-router-dom";
 import "../../App.css";
+import { CustomJwtPayload } from "@/types/global";
 
 const { Sider } = Layout;
 
@@ -25,7 +26,7 @@ const Sidebar = () => {
 
   // Define sidebar items based on user role
   const sidebarItems = (() => {
-    switch ((user as TUser)!.role) {
+    switch ((user as CustomJwtPayload).role) {
       case userRole.ADMIN:
         return [
           {
@@ -120,7 +121,7 @@ const Sidebar = () => {
           {
             key: "2",
             label: (
-              <Link to="bookings/:userId" className="sidebar-link">
+              <Link to="bookings/:userEmail" className="sidebar-link">
                 My Bookings
               </Link>
             ),

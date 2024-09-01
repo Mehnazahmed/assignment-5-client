@@ -8,11 +8,14 @@ import { useUpdateFacilityMutation } from "@/redux/features/facility/facility.ap
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
+type TFacilityResponse = {
+  data: TFacility & { _id: string; image: string };
+};
 const UpdateFacility = ({
   facility,
   refetch,
 }: {
-  facility: TFacility;
+  facility: TFacilityResponse;
   refetch: () => void;
 }) => {
   const [name, setName] = useState(facility?.data.name || "");
@@ -67,7 +70,7 @@ const UpdateFacility = ({
         id: facility?.data?._id,
         ...updatedFacility,
       });
-      //   refetch();
+      refetch();
 
       Swal.fire({
         position: "center",

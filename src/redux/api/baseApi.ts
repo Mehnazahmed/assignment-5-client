@@ -10,6 +10,10 @@ import { RootState } from "../store";
 import { logOut, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
+interface ErrorData {
+  message: string;
+}
+
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api",
   credentials: "include",
@@ -32,7 +36,9 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status === 404) {
-    toast.error(result?.error?.data?.message || "not found");
+    const errorMessage =
+      (result.error.data as ErrorData)?.message || "not found";
+    toast.error(errorMessage);
   }
   if (result?.error?.status === 401) {
     //* Send Refresh

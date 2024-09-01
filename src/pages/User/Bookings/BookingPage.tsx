@@ -10,13 +10,24 @@ import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
 import { useCreateBookingMutation } from "@/redux/features/booking/booking.api";
 import { toast } from "sonner";
+import { TUser } from "@/types/user.type";
 const { Title, Text } = Typography;
+
+type TSlot = {
+  start: string;
+  end: string;
+};
+
+interface FormData {
+  startTime?: { format: (format: string) => string };
+  endTime?: { format: (format: string) => string };
+}
 
 const BookingPage = () => {
   const [createBooking] = useCreateBookingMutation();
   const token = useAppSelector(useCurrentToken);
 
-  let user;
+  let user: TUser | undefined | null = undefined;
 
   if (token) {
     user = verifyToken(token);
@@ -61,7 +72,7 @@ const BookingPage = () => {
     }
   }, [slots]);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     const startTime = data.startTime?.format("HH:mm");
     const endTime = data.endTime?.format("HH:mm");
     const date = formattedDate;
@@ -150,7 +161,7 @@ const BookingPage = () => {
           <List
             bordered
             dataSource={slots}
-            renderItem={(slot) => (
+            renderItem={(slot: TSlot) => (
               <List.Item>
                 <Text>{`${slot?.start} - ${slot?.end}`}</Text>
               </List.Item>

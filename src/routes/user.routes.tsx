@@ -1,8 +1,9 @@
 import UserDashboard from "@/pages/User/UserDashboard";
-import BookingsById from "@/pages/User/Bookings/BookingsById";
+
 import BookingsDetails from "@/pages/User/Bookings/BookingsDetails";
 import UserInfo from "@/pages/User/UserInfo";
 import BookingPage from "@/pages/User/Bookings/BookingPage";
+import MyBookings from "@/pages/User/Bookings/MyBookings";
 
 export const userRoutes = [
   {
@@ -14,8 +15,8 @@ export const userRoutes = [
     element: <UserDashboard />,
   },
   {
-    path: "/userDashboard/bookingsById",
-    element: <BookingsById />,
+    path: "/userDashboard/bookingByEmail",
+    element: <MyBookings />,
   },
   {
     path: "/userDashboard/bookFacility",

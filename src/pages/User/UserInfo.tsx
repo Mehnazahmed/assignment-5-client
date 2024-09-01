@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { TUser, useCurrentToken } from "@/redux/features/auth/authSlice";
 import { useGetUserByEmailQuery } from "@/redux/features/user/user.api";
 import { useAppSelector } from "@/redux/hooks";
 import { verifyToken } from "@/utils/verifyToken";
 import { Layout, Avatar, Card, Typography, Spin } from "antd";
+import { CustomJwtPayload } from "@/types/global";
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const UserInfo = () => {
   const token = useAppSelector(useCurrentToken);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<TUser | undefined>(undefined);
 
   useEffect(() => {
     if (token) {
-      const verifiedUser = verifyToken(token);
+      const verifiedUser: CustomJwtPayload | null = verifyToken(token);
       setUser(verifiedUser);
     }
   }, [token]);

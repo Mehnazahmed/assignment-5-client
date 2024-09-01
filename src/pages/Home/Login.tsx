@@ -1,7 +1,7 @@
 import CustomForm from "@/components/form/CustomForm";
 import CustomInput from "@/components/form/CustomInput";
 import { useLoginMutation } from "@/redux/features/auth/auth.Api";
-import { setUser, TUser } from "@/redux/features/auth/authSlice";
+import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { verifyToken } from "@/utils/verifyToken";
 import { Row, Typography } from "antd";
@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import "./common.css";
 import { Button } from "@/components/ui/button";
+import { CustomJwtPayload } from "@/types/global";
 
 const { Title } = Typography;
 
@@ -36,7 +37,7 @@ const Login = () => {
       console.log(userInfo);
       const res = await login(userInfo).unwrap();
 
-      const user = verifyToken(res.token) as TUser;
+      const user = verifyToken(res.token) as CustomJwtPayload;
       dispatch(setUser({ user: user, token: res.token }));
       if (res?.success) {
         navigate("/");

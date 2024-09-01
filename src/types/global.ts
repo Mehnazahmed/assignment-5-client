@@ -27,6 +27,13 @@ export type TResponse<T> = {
 
 export type TResponseRedux<T> = TResponse<T> & BaseQueryApi;
 
+export interface CustomJwtPayload {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  userEmail?: string;
+}
 export type TQueryParam = {
   name: string;
   value: boolean | React.Key;
@@ -36,4 +43,10 @@ export const RoleOptions = ["admin", "user"];
 
 export interface CustomJwtPayload extends JwtPayload {
   role: string;
+}
+
+export interface TReview {
+  userName: string;
+  rating: number;
+  comment: string;
 }

@@ -4,6 +4,7 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div>
@@ -16,15 +17,12 @@ export default function Footer() {
               <p>&copy; 2024 Sport Gen. All rights reserved.</p>
             </div>
             <div className="flex space-x-4">
-              <a href="/about" className="hover:text-white text-lg">
-                About
-              </a>
-              <a href="/contact" className="hover:text-white text-lg">
+              <Link to="/about" className="hover:text-white text-lg">
+                About Us
+              </Link>
+              <Link to="/contact" className="hover:text-white text-lg">
                 Contact
-              </a>
-              <a href="/privacy" className="hover:text-white text-lg">
-                Privacy Policy
-              </a>
+              </Link>
             </div>
             <div className="flex space-x-4">
               <a

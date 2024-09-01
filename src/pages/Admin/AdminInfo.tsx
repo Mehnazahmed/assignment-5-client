@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { TUser, useCurrentToken } from "@/redux/features/auth/authSlice";
 import { useGetUserByEmailQuery } from "@/redux/features/user/user.api";
 import { useAppSelector } from "@/redux/hooks";
 import { verifyToken } from "@/utils/verifyToken";
@@ -10,12 +10,12 @@ const { Title, Text } = Typography;
 
 const AdminInfo = () => {
   const token = useAppSelector(useCurrentToken);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<TUser | null>(null);
 
   useEffect(() => {
     if (token) {
-      const verifiedUser = verifyToken(token);
-      setUser(verifiedUser);
+      const decodedUser = verifyToken(token);
+      setUser(decodedUser as TUser);
     }
   }, [token]);
 

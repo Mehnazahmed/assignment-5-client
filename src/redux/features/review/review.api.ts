@@ -1,7 +1,6 @@
-import { TResponseRedux } from "@/types/global";
+import { TResponseRedux, TReview } from "@/types/global";
 
 import { baseApi } from "@/redux/api/baseApi";
-import { TBooking } from "@/types/booking.type";
 
 const reviewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -13,7 +12,7 @@ const reviewApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["reviews"],
-      transformResponse: (response: TResponseRedux<TBooking[]>) => {
+      transformResponse: (response: TResponseRedux<TReview[]>) => {
         return {
           data: response.data,
           meta: response.meta,

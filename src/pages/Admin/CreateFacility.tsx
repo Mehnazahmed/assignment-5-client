@@ -24,12 +24,12 @@ const facilityDefaultValues = {
 };
 
 const CreateFacility = () => {
-  const { handleSubmit, control, reset } = useForm({
+  const { reset } = useForm({
     defaultValues: facilityDefaultValues,
   });
   const [createFacility] = useAddFacilityMutation();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log(data);
 
     const formData = new FormData();
@@ -44,24 +44,24 @@ const CreateFacility = () => {
       return;
     }
 
-    formData.append("pricePerHour", pricePerHour);
+    formData.append("pricePerHour", pricePerHour.toString());
 
     if (data.file?.length) {
       formData.append("file", data.file[0]);
     }
 
-    createFacility(formData)
-      .unwrap()
-      .then((response) => {
+    try {
+      const response = await createFacility(formData).unwrap();
+      if (response.success) {
         toast("Facility created successfully");
         reset();
 
         console.log("Facility created successfully:", response);
-      })
-      .catch((error) => {
-        toast("Failed to create facility");
-        console.error("Failed to create facility:", error);
-      });
+      }
+    } catch (error) {
+      toast("Failed to create facility");
+      console.error("Failed to create facility:", error);
+    }
 
     console.log(Object.fromEntries(formData));
   };
@@ -88,7 +88,7 @@ const CreateFacility = () => {
           Create <span style={{ color: "#F95924" }}>Facility</span>
         </Title>
 
-        <CustomForm onSubmit={handleSubmit(onSubmit)}>
+        <CustomForm onSubmit={onSubmit}>
           <CustomInput
             type="text"
             name="name"
@@ -105,7 +105,6 @@ const CreateFacility = () => {
             type="number"
             name="pricePerHour"
             label="Price Per Hour"
-            defaultValue={facilityDefaultValues.pricePerHour}
           />
           <CustomInput
             type="text"
@@ -115,21 +114,21 @@ const CreateFacility = () => {
           />
 
           <Controller
-            name="file"
-            control={control}
-            render={({ field: { onChange } }) => (
+            name="image"
+            render={({ field: { onChange, value, ...field } }) => (
               <Form.Item label={<span style={{ color: "#fff" }}>Picture</span>}>
                 <Input
                   style={{
                     borderColor: "#F95924",
                   }}
+                  value={value?.fileName}
                   type="file"
-                  onChange={(e) => onChange(e.target.files)}
+                  {...field}
+                  onChange={(e) => onChange(e.target.files?.[0])}
                 />
               </Form.Item>
             )}
           />
-
           <Button
             type="submit"
             className="bg-white w-full text-[#F95924] hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"

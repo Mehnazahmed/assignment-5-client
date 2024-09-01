@@ -13,8 +13,10 @@ import { Button } from "@/components/ui/button";
 import { TFacility } from "@/types";
 import { useGetAllFacilitiesQuery } from "@/redux/features/facility/facility.api";
 
+type TFacilityWithId = TFacility & { _id: string; image: string };
 const FacilityList = () => {
-  const [sortType, setSortType] = useState("price");
+  const [sortType] = useState("price");
+
   const { data: facilities, isLoading, refetch } = useGetAllFacilitiesQuery({});
   const [searchTerm, setSearchTerm] = useState("");
   const [locationTerm, setLocationTerm] = useState("");
@@ -59,26 +61,28 @@ const FacilityList = () => {
     )
     .sort((a: TFacility, b: TFacility) => a.pricePerHour - b.pricePerHour);
 
-  const tableRows = filteredAndSortedFacilities?.map((facility: TFacility) => (
-    <TableRow key={facility?._id}>
-      <TableCell>
-        <Avatar>
-          <AvatarImage src={facility?.image} alt={facility.name} />
-          <AvatarFallback>{facility.name.charAt(0)}</AvatarFallback>
-        </Avatar>
-      </TableCell>
-      <TableCell>{facility.name}</TableCell>
-      <TableCell>{facility.location}</TableCell>
-      <TableCell>${facility.pricePerHour}</TableCell>
-      <TableCell>
-        <Link to={`/facility/${facility._id}`}>
-          <Button className="bg-black text-white hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors">
-            View Details
-          </Button>
-        </Link>
-      </TableCell>
-    </TableRow>
-  ));
+  const tableRows = filteredAndSortedFacilities?.map(
+    (facility: TFacilityWithId) => (
+      <TableRow key={facility?._id}>
+        <TableCell>
+          <Avatar>
+            <AvatarImage src={facility?.image} alt={facility.name} />
+            <AvatarFallback>{facility.name.charAt(0)}</AvatarFallback>
+          </Avatar>
+        </TableCell>
+        <TableCell>{facility.name}</TableCell>
+        <TableCell>{facility.location}</TableCell>
+        <TableCell>${facility.pricePerHour}</TableCell>
+        <TableCell>
+          <Link to={`/facility/${facility._id}`}>
+            <Button className="bg-black text-white hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors">
+              View Details
+            </Button>
+          </Link>
+        </TableCell>
+      </TableRow>
+    )
+  );
 
   if (isLoading) {
     return (
