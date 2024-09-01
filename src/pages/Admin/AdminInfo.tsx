@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { useGetUserByEmailQuery } from "@/redux/features/user/user.api";
 import { useAppSelector } from "@/redux/hooks";
@@ -10,9 +10,9 @@ const { Title, Text } = Typography;
 
 const AdminInfo = () => {
   const token = useAppSelector(useCurrentToken);
-  const [user, setUser] = React.useState<any>(null);
+  const [user, setUser] = useState<any>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (token) {
       const verifiedUser = verifyToken(token);
       setUser(verifiedUser);
@@ -56,7 +56,7 @@ const AdminInfo = () => {
             padding: "24px",
             backgroundColor: "#ffffff",
             border: "1px solid #F95924",
-            alignItems: "center", // Align items vertically
+            alignItems: "center", //
           }}
         >
           <div className="flex justify-end m-8">

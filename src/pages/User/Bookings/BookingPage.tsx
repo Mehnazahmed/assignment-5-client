@@ -129,14 +129,6 @@ const BookingPage = () => {
               )}
             />
           </Col>
-          {/* <Col span={8}>
-            <Button
-              onClick={handleSubmit(onSubmit)}
-              className="bg-[#F95924] text-white w-full  hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"
-            >
-              Check Availability
-            </Button>
-          </Col> */}
         </Row>
 
         <Row gutter={16} style={{ marginTop: "20px" }}>

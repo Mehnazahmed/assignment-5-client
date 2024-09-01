@@ -14,13 +14,13 @@ const ReviewSlider = () => {
         {reviews?.data?.map((review, index) => (
           <div key={index} className="feedback-slide">
             <Card
-              title={<span className="user-name">{review.userName}</span>}
+              title={<span className="user-name">{review?.userName}</span>}
               bordered={false}
               className="custom-card"
             >
               <Rate
                 disabled
-                defaultValue={review.rating}
+                defaultValue={review?.rating}
                 className="rating-stars"
               />
               <p className="feedback-comment">{review.comment}</p>

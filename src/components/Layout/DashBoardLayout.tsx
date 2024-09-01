@@ -5,7 +5,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { Outlet } from "react-router-dom";
 import { logOut } from "../../redux/features/auth/authSlice";
 import "../../pages/Home/common.css";
-import { Fullscreen } from "lucide-react";
+
 const { Header, Content } = Layout;
 
 const DashBoardLayout = () => {

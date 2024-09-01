@@ -22,7 +22,7 @@ export const userRoutes = [
     element: <BookingPage />,
   },
   {
-    path: "/userDashboard/bookings/:userId",
+    path: "/userDashboard/bookings/:userEmail",
     element: <BookingsDetails />,
   },
 ];

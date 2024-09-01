@@ -125,14 +125,6 @@ const Sidebar = () => {
               </Link>
             ),
           },
-          {
-            key: "3",
-            label: (
-              <Link to="reviews/:userId" className="sidebar-link">
-                My Reviews
-              </Link>
-            ),
-          },
         ];
       default:
         return [];

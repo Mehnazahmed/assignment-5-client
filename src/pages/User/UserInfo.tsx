@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { useGetUserByEmailQuery } from "@/redux/features/user/user.api";
 import { useAppSelector } from "@/redux/hooks";
@@ -10,9 +10,9 @@ const { Title, Text } = Typography;
 
 const UserInfo = () => {
   const token = useAppSelector(useCurrentToken);
-  const [user, setUser] = React.useState<any>(null);
+  const [user, setUser] = useState<any>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (token) {
       const verifiedUser = verifyToken(token);
       setUser(verifiedUser);
@@ -114,13 +114,3 @@ const UserInfo = () => {
 };
 
 export default UserInfo;
-
-// const UserInfo = () => {
-//   return (
-//     <div>
-//       <h1>hello</h1>
-//     </div>
-//   );
-// };
-
-// export default UserInfo;
