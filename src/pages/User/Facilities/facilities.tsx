@@ -3,13 +3,18 @@ import { useGetAllFacilitiesQuery } from "@/redux/features/facility/facility.api
 import "../../../App.css";
 import { TFacility } from "@/types/facility.type";
 import FacilityCard from "./FacilityCard";
+import { Spin } from "antd";
 
 const Facilities = () => {
   const {
     data: facilities,
-    // isLoading,
+    isLoading,
     //  refetch
   } = useGetAllFacilitiesQuery({});
+
+  if (isLoading) {
+    <Spin size="large" />;
+  }
 
   console.log(facilities);
   return (

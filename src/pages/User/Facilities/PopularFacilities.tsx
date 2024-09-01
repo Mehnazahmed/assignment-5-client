@@ -9,9 +9,13 @@ import { Button } from "@/components/ui/button";
 const PopularFacilities = () => {
   const {
     data: facilities,
-    // isLoading,
+    isLoading,
     //  refetch
   } = useGetAllFacilitiesQuery({});
+
+  if (isLoading) {
+    <Spin size="large" />;
+  }
 
   console.log(facilities);
   return (

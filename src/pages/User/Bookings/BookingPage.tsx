@@ -100,13 +100,13 @@ const BookingPage = () => {
           margin: "auto",
         }}
       >
-        <Title level={2} style={{ textAlign: "center" }}>
-          Booking Page
+        <Title level={2} style={{ textAlign: "center", color: "fff" }}>
+          Booking <span style={{ color: "#F95924" }}>Page</span>
         </Title>
 
         <Card>
-          <Title level={4}>{facility.name}</Title>
-          <Title level={4}>{facility.location}</Title>
+          <Title level={4}>{facility?.name}</Title>
+          <Title level={4}>{facility?.location}</Title>
 
           <Text
             style={{ color: "#F95924", fontSize: "20px", fontWeight: "bold" }}
@@ -166,17 +166,12 @@ const BookingPage = () => {
           />
         </Modal>
 
-        <div className="flex justify-between  ">
-          <Button
-            onClick={handleSubmit(onSubmit)}
-            className="bg-[#F95924] mr-4 text-white w-full hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"
-          >
-            Create Booking
-          </Button>
-          <Button className="bg-[#F95924] ml-4 text-white w-full hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors">
-            Proceed to Pay
-          </Button>
-        </div>
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          className="bg-[#F95924] mr-4 text-white w-full hover:bg-[rgb(9,20,35)] border-2 border-transparent hover:border-[#F95924] transition-colors"
+        >
+          Proceed to Pay
+        </Button>
       </div>
     </FormProvider>
   );
