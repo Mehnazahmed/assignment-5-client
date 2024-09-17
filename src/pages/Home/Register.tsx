@@ -14,15 +14,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const { Title } = Typography;
-const userDefaultValues = {
-  name: "miki",
-  email: "miki@example.com",
-  password: "miki123",
-  phone: "555-123-4567",
-  //   profileImg: "/images/default-profile.png",
-  role: "user", // Default role
-  address: "123 Default St, Default City",
-};
 
 const Register = () => {
   const navigate = useNavigate();
@@ -30,6 +21,7 @@ const Register = () => {
   const [addUser] = useAddUserMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const toastId = toast.loading("registering....");
     console.log(data);
 
     const formData = new FormData();
@@ -48,14 +40,19 @@ const Register = () => {
     addUser(formData)
       .unwrap()
       .then((response) => {
-        toast("User created successfully");
+        toast.success("User created successfully", {
+          id: toastId,
+          duration: 2000,
+        });
         reset();
         navigate("/");
         console.log("User created successfully:", response);
       })
       .catch((error) => {
-        toast("Failed to create user");
-        console.error("Failed to create user:", error);
+        if (error instanceof Error) {
+          toast.error(error.message, { id: toastId, duration: 2000 });
+          console.log(error);
+        }
       });
 
     console.log(Object.fromEntries(formData));
@@ -83,14 +80,32 @@ const Register = () => {
           Sign <span style={{ color: "#F95924" }}>Up</span>
         </Title>
 
-        <CustomForm onSubmit={onSubmit} defaultValues={userDefaultValues}>
-          <CustomInput type="text" name="name" label="Name" />
-          <CustomInput type="text" name="email" label="Email:" />
+        <CustomForm onSubmit={onSubmit}>
+          <CustomInput
+            type="text"
+            name="name"
+            label="Name"
+            rules={{ required: "Name is required" }}
+          />
+          <CustomInput
+            type="text"
+            name="email"
+            label="Email:"
+            rules={{ required: "Email is required" }}
+          />
 
           <Controller
             name="image"
-            render={({ field: { onChange, value, ...field } }) => (
-              <Form.Item label={<span style={{ color: "#fff" }}>Picture</span>}>
+            rules={{ required: "Picture is required" }}
+            render={({
+              field: { onChange, value, ...field },
+              fieldState: { error },
+            }) => (
+              <Form.Item
+                label={<span style={{ color: "#fff" }}>Picture:</span>}
+                help={error ? error.message : null}
+                validateStatus={error ? "error" : ""}
+              >
                 <Input
                   style={{
                     borderColor: "#F95924",
@@ -104,9 +119,19 @@ const Register = () => {
             )}
           />
 
-          <CustomInput type="text" name="phone" label="Contact No." />
+          <CustomInput
+            type="text"
+            name="phone"
+            label="Contact No."
+            rules={{ required: "Contact number is required" }}
+          />
 
-          <CustomInput type="text" name="address" label="Address" />
+          <CustomInput
+            type="text"
+            name="address"
+            label="Address"
+            rules={{ required: "Address is required" }}
+          />
 
           <CustomInput
             label="Role:"
@@ -115,7 +140,12 @@ const Register = () => {
             defaultValue="user"
           />
 
-          <CustomInput type="password" name="password" label="Password:" />
+          <CustomInput
+            type="password"
+            name="password"
+            label="Password:"
+            rules={{ required: "Password is required" }}
+          />
 
           <Button
             type="submit"

@@ -15,12 +15,6 @@ import { CustomJwtPayload } from "@/types/global";
 const { Title } = Typography;
 
 const Login = () => {
-  const defaultUser = {
-    // email: "mehnaz@gmail.com",
-    // password: "Super123",
-    email: "oreo@example.com",
-    password: "oreo123",
-  };
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -44,7 +38,14 @@ const Login = () => {
       }
       toast.success("Logged in", { id: toastId, duration: 2000 });
     } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+      if (err instanceof Error) {
+        toast.error(err.message, { id: toastId, duration: 2000 });
+      } else {
+        toast.error("An unexpected error occurred", {
+          id: toastId,
+          duration: 2000,
+        });
+      }
       console.log(err);
     }
   };
@@ -71,9 +72,19 @@ const Login = () => {
           Log <span style={{ color: "#F95924" }}>In</span>
         </Title>
 
-        <CustomForm onSubmit={onSubmit} defaultValues={defaultUser}>
-          <CustomInput type="text" name="email" label="Email:" />
-          <CustomInput type="password" name="password" label="Password:" />
+        <CustomForm onSubmit={onSubmit}>
+          <CustomInput
+            type="text"
+            name="email"
+            label="Email:"
+            rules={{ required: "Email is required" }}
+          />
+          <CustomInput
+            type="password"
+            name="password"
+            label="Password:"
+            rules={{ required: "Password is required" }}
+          />
 
           <Button
             type="submit"

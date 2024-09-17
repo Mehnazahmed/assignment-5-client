@@ -6,6 +6,7 @@ import { verifyToken } from "../../utils/verifyToken";
 
 type TProtectedRoute = {
   children: ReactNode;
+
   role: string | undefined;
 };
 

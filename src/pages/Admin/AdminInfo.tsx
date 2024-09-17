@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TUser, useCurrentToken } from "@/redux/features/auth/authSlice";
 import { useGetUserByEmailQuery } from "@/redux/features/user/user.api";
 import { useAppSelector } from "@/redux/hooks";

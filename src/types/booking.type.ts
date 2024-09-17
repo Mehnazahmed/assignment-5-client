@@ -1,3 +1,5 @@
+import { TFacility } from "./facility.type";
+
 export type TBookingStatus = "confirmed" | "unconfirmed" | "canceled";
 // export interface TBooking {
 //   _id?: string;
@@ -14,10 +16,10 @@ interface User {
   _id: string;
 }
 
-interface Facility {
-  _id: string;
-  name: string;
-}
+// interface Facility {
+//   _id: string;
+//   name: string;
+// }
 
 export interface TBooking {
   _id: string;
@@ -25,7 +27,7 @@ export interface TBooking {
   startTime: string;
   endTime: string;
   user: User;
-  facility: Facility;
+  facility: TFacility;
   payableAmount: number;
   isBooked: TBookingStatus;
 }

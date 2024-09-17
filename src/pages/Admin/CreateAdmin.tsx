@@ -15,15 +15,6 @@ import { toast } from "sonner";
 import { useCreateAdminMutation } from "@/redux/features/user/user.api";
 
 const { Title } = Typography;
-const userDefaultValues = {
-  name: "John",
-  email: "john.doe5@example.com",
-  password: "defaultPassword123",
-  phone: "555-123-4567",
-  //   profileImg: "/images/default-profile.png",
-  role: "admin", // Default role
-  address: "123 Default St, Default City",
-};
 
 const CreateAdmin = () => {
   const { reset } = useForm();
@@ -83,14 +74,32 @@ const CreateAdmin = () => {
           Create <span style={{ color: "#F95924" }}>Admin</span>
         </Title>
 
-        <CustomForm onSubmit={onSubmit} defaultValues={userDefaultValues}>
-          <CustomInput type="text" name="name" label="Name" />
-          <CustomInput type="text" name="email" label="Email:" />
+        <CustomForm onSubmit={onSubmit}>
+          <CustomInput
+            type="text"
+            name="name"
+            label="Name"
+            rules={{ required: "Name is required" }}
+          />
+          <CustomInput
+            type="text"
+            name="email"
+            label="Email:"
+            rules={{ required: "Email is required" }}
+          />
 
           <Controller
             name="image"
-            render={({ field: { onChange, value, ...field } }) => (
-              <Form.Item label={<span style={{ color: "#fff" }}>Picture</span>}>
+            rules={{ required: "Picture is required" }}
+            render={({
+              field: { onChange, value, ...field },
+              fieldState: { error },
+            }) => (
+              <Form.Item
+                label={<span style={{ color: "#fff" }}>Picture</span>}
+                help={error ? error.message : null}
+                validateStatus={error ? "error" : ""}
+              >
                 <Input
                   style={{
                     borderColor: "#F95924",
@@ -104,9 +113,19 @@ const CreateAdmin = () => {
             )}
           />
 
-          <CustomInput type="text" name="phone" label="Contact No." />
+          <CustomInput
+            type="text"
+            name="phone"
+            label="Contact No."
+            rules={{ required: "Contact No is required" }}
+          />
 
-          <CustomInput type="text" name="address" label="Address" />
+          <CustomInput
+            type="text"
+            name="address"
+            label="Address"
+            rules={{ required: "Address is required" }}
+          />
 
           <CustomInput
             label="Role:"
@@ -115,7 +134,12 @@ const CreateAdmin = () => {
             defaultValue="admin"
           />
 
-          <CustomInput type="password" name="password" label="Password:" />
+          <CustomInput
+            type="password"
+            name="password"
+            label="Password:"
+            rules={{ required: "Password is required" }}
+          />
 
           <Button
             type="submit"

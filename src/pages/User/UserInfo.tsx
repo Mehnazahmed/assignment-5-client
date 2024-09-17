@@ -11,12 +11,12 @@ const { Title, Text } = Typography;
 
 const UserInfo = () => {
   const token = useAppSelector(useCurrentToken);
-  const [user, setUser] = useState<TUser | undefined>(undefined);
+  const [user, setUser] = useState<TUser | null>(null);
 
   useEffect(() => {
     if (token) {
       const verifiedUser: CustomJwtPayload | null = verifyToken(token);
-      setUser(verifiedUser);
+      setUser(verifiedUser as TUser);
     }
   }, [token]);
 

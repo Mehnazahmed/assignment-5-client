@@ -1,4 +1,4 @@
-import { TResponseRedux } from "@/types/global";
+// import { TResponseRedux } from "@/types/global";
 
 import { baseApi } from "@/redux/api/baseApi";
 import { TBooking } from "@/types/booking.type";
@@ -13,14 +13,9 @@ const bookingApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["bookings"],
-      transformResponse: (response: TResponseRedux<TBooking[]>) => {
-        return {
-          data: response.data,
-          meta: response.meta,
-        };
-      },
+      transformResponse: (response: TBooking[]) => response,
     }),
-    getSingleBooking: builder.query({
+    getBookingsById: builder.query({
       query: (id) => ({
         url: `/bookings/${id}`,
         method: "GET",
@@ -54,7 +49,7 @@ const bookingApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllBookingsQuery,
-  useGetSingleBookingQuery,
+  useGetBookingsByIdQuery,
   useCreateBookingMutation,
   useUpdateBookingMutation,
   useDeleteBookingMutation,

@@ -14,6 +14,8 @@ const PopularFacilities = () => {
     //  refetch
   } = useGetAllFacilitiesQuery({});
 
+  console.log(facilities);
+
   if (isLoading) {
     <Spin size="large" />;
   }

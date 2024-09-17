@@ -16,17 +16,8 @@ import { useAddFacilityMutation } from "@/redux/features/facility/facility.api";
 
 const { Title } = Typography;
 
-const facilityDefaultValues = {
-  name: "Default Facility",
-  description: "Default description",
-  pricePerHour: 50,
-  location: "Default Location",
-};
-
 const CreateFacility = () => {
-  const { reset } = useForm({
-    defaultValues: facilityDefaultValues,
-  });
+  const { reset } = useForm({});
   const [createFacility] = useAddFacilityMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -93,30 +84,39 @@ const CreateFacility = () => {
             type="text"
             name="name"
             label="Name"
-            defaultValue={facilityDefaultValues.name}
+            rules={{ required: "Facility Name is required" }}
           />
           <CustomInput
             type="text"
             name="description"
             label="Description"
-            defaultValue={facilityDefaultValues.description}
+            rules={{ required: "Description is required" }}
           />
           <CustomInput
             type="number"
             name="pricePerHour"
             label="Price Per Hour"
+            rules={{ required: "Price Per Hour is required" }}
           />
           <CustomInput
             type="text"
             name="location"
             label="Location"
-            defaultValue={facilityDefaultValues.location}
+            rules={{ required: "Location is required" }}
           />
 
           <Controller
             name="image"
-            render={({ field: { onChange, value, ...field } }) => (
-              <Form.Item label={<span style={{ color: "#fff" }}>Picture</span>}>
+            rules={{ required: "Facility picture is required" }}
+            render={({
+              field: { onChange, value, ...field },
+              fieldState: { error },
+            }) => (
+              <Form.Item
+                label={<span style={{ color: "#fff" }}>Picture</span>}
+                help={error ? error.message : null}
+                validateStatus={error ? "error" : ""}
+              >
                 <Input
                   style={{
                     borderColor: "#F95924",

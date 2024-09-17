@@ -1,7 +1,15 @@
-import CustomTimePicker from "@/components/form/CustomTimePicker";
 import { Button } from "@/components/ui/button";
 import { useGetAvailableSlotsQuery } from "@/redux/features/facility/facility.api";
-import { Card, Col, DatePicker, List, Modal, Row, Typography } from "antd";
+import {
+  Card,
+  Col,
+  DatePicker,
+  Input,
+  List,
+  Modal,
+  Row,
+  Typography,
+} from "antd";
 import { FormProvider, useForm, Controller } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -14,14 +22,14 @@ import { TUser } from "@/types/user.type";
 const { Title, Text } = Typography;
 
 type TSlot = {
-  start: string;
-  end: string;
+  startTime: string;
+  endTime: string;
 };
 
-interface FormData {
-  startTime?: { format: (format: string) => string };
-  endTime?: { format: (format: string) => string };
-}
+// interface FormData {
+//   startTime?: string;
+//   endTime?: string;
+// }
 
 const BookingPage = () => {
   const [createBooking] = useCreateBookingMutation();
@@ -30,9 +38,8 @@ const BookingPage = () => {
   let user: TUser | undefined | null = undefined;
 
   if (token) {
-    user = verifyToken(token);
+    user = verifyToken(token) as TUser | null;
   }
-  console.log(user);
 
   const methods = useForm();
   const { control, handleSubmit, watch } = methods;
@@ -40,11 +47,10 @@ const BookingPage = () => {
   const facility = location.state?.facility;
   const facilityId = facility?._id;
 
-  // State to store formatted date and time
   const [formattedDate, setFormattedDate] = useState<string | null>(null);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
-  // Watch date and time fields
+  const [selectedSlot, setSelectedSlot] = useState<TSlot | null>(null); // Store selected slot
+
   const dateField = watch("date");
 
   useEffect(() => {
@@ -53,7 +59,6 @@ const BookingPage = () => {
     }
   }, [dateField]);
 
-  // Perform API query when formattedDate or facilityId changes
   const {
     data: availableSlots,
     error,
@@ -62,19 +67,20 @@ const BookingPage = () => {
     date: formattedDate,
     facilityId,
   });
-  const slots = availableSlots?.data?.availableSlots;
-  //   console.log(slots, error);
 
-  //modal trigger
   useEffect(() => {
-    if (slots && slots.length > 0) {
+    if (availableSlots?.data?.length > 0) {
       setIsModalVisible(true);
     }
-  }, [slots]);
+  }, [availableSlots]);
 
-  const onSubmit = async (data: FormData) => {
-    const startTime = data.startTime?.format("HH:mm");
-    const endTime = data.endTime?.format("HH:mm");
+  const onSubmit = async () => {
+    if (!selectedSlot) {
+      toast("Please select a time slot");
+      return;
+    }
+
+    const { startTime, endTime } = selectedSlot;
     const date = formattedDate;
     const facility = facilityId;
     const userId = user?.userId;
@@ -87,31 +93,29 @@ const BookingPage = () => {
       userId,
     };
 
-    // console.log("Booking Data:", bookingData);
-
     try {
       const result = await createBooking(bookingData).unwrap();
       if (result.success) {
-        console.log("Booking created successfully", result);
         toast("Booking created successfully");
         window.location.href = result.data.payment_url;
       }
     } catch (error) {
-      console.error("Error creating booking:", error);
-      toast("Booking created successfully");
+      if (error instanceof Error) {
+        toast("Error creating Booking");
+      }
     }
+  };
+
+  // Handle slot selection
+  const handleSlotSelection = (slot: TSlot) => {
+    setSelectedSlot(slot); // Set the selected slot
+    setIsModalVisible(false); // Close the modal after selection
   };
 
   return (
     <FormProvider {...methods}>
-      <div
-        style={{
-          padding: "20px",
-          maxWidth: "600px",
-          margin: "auto",
-        }}
-      >
-        <Title level={2} style={{ textAlign: "center", color: "fff" }}>
+      <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
+        <Title level={2} style={{ textAlign: "center", color: "white" }}>
           Booking <span style={{ color: "#F95924" }}>Page</span>
         </Title>
 
@@ -126,8 +130,19 @@ const BookingPage = () => {
           </Text>
         </Card>
 
-        <Row gutter={16} style={{ marginTop: "20px" }}>
+        <Row gutter={16} style={{ marginTop: "10px", marginBottom: "20px" }}>
           <Col span={16}>
+            <Text
+              strong
+              style={{
+                marginTop: "10px",
+                marginBottom: "5px",
+                display: "block",
+                color: "white",
+              }}
+            >
+              Pick a Date:
+            </Text>
             <Controller
               control={control}
               name="date"
@@ -142,15 +157,8 @@ const BookingPage = () => {
           </Col>
         </Row>
 
-        <Row gutter={16} style={{ marginTop: "20px" }}>
-          <Col span={12}>
-            <CustomTimePicker label="Start Time" name="startTime" />
-          </Col>
-          <Col span={12}>
-            <CustomTimePicker label="End Time" name="endTime" />
-          </Col>
-        </Row>
         {isLoading && <Text>Loading slots...</Text>}
+
         <Modal
           title="Available Time Slots"
           visible={isModalVisible}
@@ -160,14 +168,39 @@ const BookingPage = () => {
           {error && <Text type="danger">Error fetching available slots</Text>}
           <List
             bordered
-            dataSource={slots}
+            dataSource={availableSlots?.data || []}
             renderItem={(slot: TSlot) => (
-              <List.Item>
-                <Text>{`${slot?.start} - ${slot?.end}`}</Text>
+              <List.Item
+                onClick={() => handleSlotSelection(slot)}
+                style={{ cursor: "pointer" }}
+              >
+                <Text>{`${slot.startTime} - ${slot.endTime}`}</Text>
               </List.Item>
             )}
           />
         </Modal>
+
+        {selectedSlot && (
+          <Row gutter={16} style={{ marginTop: "10px", marginBottom: "20px" }}>
+            <Col span={16}>
+              <Text
+                strong
+                style={{
+                  marginTop: "5px",
+                  marginBottom: "5px",
+                  display: "block",
+                  color: "white",
+                }}
+              >
+                Selected Time Slot:
+              </Text>
+              <Input
+                value={`${selectedSlot.startTime} - ${selectedSlot.endTime}`} // Display selected time slot in Input
+                readOnly
+              />
+            </Col>
+          </Row>
+        )}
 
         <Button
           onClick={handleSubmit(onSubmit)}

@@ -50,7 +50,7 @@ const DashBoardLayout = () => {
           <div
             style={{
               padding: 24,
-              height: "100vh",
+              height: "100%",
 
               backgroundColor: "rgb(9,20,35)",
             }}

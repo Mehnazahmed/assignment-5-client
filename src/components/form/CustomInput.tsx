@@ -7,6 +7,7 @@ type TInputProps = {
   label?: string;
   disabled?: boolean;
   defaultValue?: string;
+  rules?: object;
 };
 
 const CustomInput = ({
@@ -14,6 +15,7 @@ const CustomInput = ({
   name,
   label,
   disabled,
+  rules,
   defaultValue,
 }: TInputProps) => {
   const { control } = useFormContext();
@@ -23,8 +25,13 @@ const CustomInput = ({
         name={name}
         control={control}
         defaultValue={defaultValue}
-        render={({ field }) => (
-          <Form.Item style={{ color: "#fff" }}>
+        rules={rules}
+        render={({ field, fieldState: { error } }) => (
+          <Form.Item
+            style={{ color: "#fff" }}
+            help={error ? error.message : null} // Display error message
+            validateStatus={error ? "error" : ""}
+          >
             {" "}
             <span
               style={{

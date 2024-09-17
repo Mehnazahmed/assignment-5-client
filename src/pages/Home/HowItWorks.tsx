@@ -9,19 +9,19 @@ const steps = [
     title: "Sign Up or Log In",
     description: "Create an account or log in to start booking.",
 
-    icon: "../../../public/signup.jpg",
+    icon: "https://res.cloudinary.com/dj3m1cb0v/image/upload/v1725380508/signup_j1cqn5.jpg",
   },
   {
     id: 2,
     title: "Browse Facilities",
     description: "Explore available sports facilities.",
-    icon: "../../../public/facilities.jpg",
+    icon: "https://res.cloudinary.com/dj3m1cb0v/image/upload/v1725380296/facilities_ltnsts.jpg",
   },
   {
     id: 3,
     title: "Book a Facility",
     description: "Choose the best facility according to your choice.",
-    icon: "../../../public/select.svg",
+    icon: "https://res.cloudinary.com/dj3m1cb0v/image/upload/v1725380551/select_nj4lec.svg",
   },
 ];
 

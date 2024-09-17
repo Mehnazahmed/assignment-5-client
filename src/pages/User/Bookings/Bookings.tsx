@@ -40,11 +40,11 @@ const AllBookings = () => {
       </TableCell>
 
       <TableCell className="text-white">
-        {booking.user.name || "Unknown User"}
+        {booking?.user?.name || "Unknown User"}
       </TableCell>
 
       <TableCell className="text-white">
-        {booking.facility.name || "Unknown Facility"}
+        {booking?.facility?.name || "Unknown Facility"}
       </TableCell>
       <TableCell className="text-white">{booking.payableAmount}</TableCell>
       <TableCell className="text-white">
