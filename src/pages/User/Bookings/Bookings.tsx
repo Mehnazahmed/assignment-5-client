@@ -56,7 +56,7 @@ const AllBookings = () => {
 
   if (isLoading) {
     return (
-      <p className="text-3xl text-center text-black-500 my-2 font-bold">
+      <p className="text-3xl text-center text-white my-2 font-bold">
         Loading....
       </p>
     );
