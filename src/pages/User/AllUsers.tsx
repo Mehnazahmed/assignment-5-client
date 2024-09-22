@@ -10,6 +10,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useGetAllUsersQuery } from "@/redux/features/user/user.api";
 import { TUser } from "@/types/user.type";
 import { useEffect } from "react";
+import { Spin } from "antd";
 
 const AllUsers = () => {
   const { data: users, refetch, isLoading } = useGetAllUsersQuery({});
@@ -36,13 +37,7 @@ const AllUsers = () => {
     </TableRow>
   ));
 
-  if (isLoading) {
-    return (
-      <p className="text-3xl text-center text-black-500 my-2 font-bold">
-        Loading....
-      </p>
-    );
-  }
+  if (isLoading) return <Spin size="large" />;
 
   return (
     <div className="overflow-x-auto">

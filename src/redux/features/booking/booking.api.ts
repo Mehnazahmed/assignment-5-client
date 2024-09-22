@@ -2,6 +2,7 @@
 
 import { baseApi } from "@/redux/api/baseApi";
 import { TBooking } from "@/types/booking.type";
+import { TResponseRedux } from "@/types/global";
 
 const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -13,7 +14,13 @@ const bookingApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["bookings"],
-      transformResponse: (response: TBooking[]) => response,
+
+      transformResponse: (response: TResponseRedux<TBooking[]>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
     }),
     getBookingsById: builder.query({
       query: (id) => ({

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useGetFacilityByIdQuery } from "@/redux/features/facility/facility.api";
+import { Spin } from "antd";
 
 import { Link, useParams } from "react-router-dom";
 
@@ -10,13 +11,7 @@ const FacilityDetails = () => {
   const { data: facility, isLoading } = useGetFacilityByIdQuery(id);
   console.log(facility);
 
-  if (isLoading) {
-    return (
-      <p className="text-3xl text-center text-black-500 my-2 font-bold">
-        Loading....
-      </p>
-    );
-  }
+  if (isLoading) return <Spin size="large" />;
 
   return (
     <div className="flex flex-col items-center p-4 bg-gray-500 text-white min-h-screen">

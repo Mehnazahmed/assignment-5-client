@@ -8,12 +8,13 @@ import {
 } from "@/components/ui/table";
 import { useGetAllBookingsQuery } from "@/redux/features/booking/booking.api";
 import { TBooking } from "@/types/booking.type";
+
 import { useEffect } from "react";
 
 const AllBookings = () => {
   const { data: bookings, refetch, isLoading } = useGetAllBookingsQuery({});
 
-  console.log(bookings);
+  // console.log(bookings);
 
   useEffect(() => {
     refetch();
@@ -29,7 +30,7 @@ const AllBookings = () => {
     return t.toLocaleTimeString();
   };
 
-  const tableRows = bookings?.map((booking: TBooking) => (
+  const tableRows = bookings?.data?.map((booking: TBooking) => (
     <TableRow key={booking._id} className="hover:bg-slate-800">
       <TableCell className="text-white">{formatDate(booking.date)}</TableCell>
       <TableCell className="text-white">

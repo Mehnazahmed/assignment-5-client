@@ -16,7 +16,7 @@ const Facilities = () => {
     <Spin size="large" />;
   }
 
-  console.log(facilities);
+  // console.log(facilities);
   return (
     <div className="services-section ">
       <h1
