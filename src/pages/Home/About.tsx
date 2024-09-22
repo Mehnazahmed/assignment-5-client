@@ -117,7 +117,7 @@ const About = () => {
           </h1>
         </Divider>
         <Timeline mode="alternate">
-          <Timeline.Item color="#F95924">
+          <Timeline.Item color="green">
             Founded the company in 2018
           </Timeline.Item>
           <Timeline.Item color="green">

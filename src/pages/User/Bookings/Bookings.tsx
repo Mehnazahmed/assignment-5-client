@@ -29,7 +29,7 @@ const AllBookings = () => {
     return t.toLocaleTimeString();
   };
 
-  const tableRows = bookings?.data?.map((booking: TBooking) => (
+  const tableRows = bookings?.map((booking: TBooking) => (
     <TableRow key={booking._id} className="hover:bg-slate-800">
       <TableCell className="text-white">{formatDate(booking.date)}</TableCell>
       <TableCell className="text-white">

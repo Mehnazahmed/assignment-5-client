@@ -35,7 +35,8 @@ const UserInfo = () => {
   const role = userData?.data?.role || "role";
   const email = userData?.data?.email;
   const profileImg =
-    userData?.data?.profileImg || "https://example.com/default-profile.jpg";
+    userData?.data?.profileImg ||
+    "https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg";
   const address = userData?.data?.address || "No address available";
 
   return (
