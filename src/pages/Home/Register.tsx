@@ -22,7 +22,7 @@ const Register = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const toastId = toast.loading("registering....");
-    console.log(data);
+    // console.log(data);
 
     const formData = new FormData();
     formData.append("name", data.name);
@@ -42,15 +42,15 @@ const Register = () => {
       .then((response) => {
         toast.success("User created successfully", {
           id: toastId,
-          duration: 2000,
+          duration: 1000,
         });
         reset();
-        navigate("/");
+        navigate("/login");
         console.log("User created successfully:", response);
       })
       .catch((error) => {
         if (error instanceof Error) {
-          toast.error(error.message, { id: toastId, duration: 2000 });
+          toast.error(error.message, { id: toastId, duration: 1000 });
           console.log(error);
         }
       });

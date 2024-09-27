@@ -20,7 +20,7 @@ const Navbar = () => {
   if (token) {
     user = verifyToken(token);
   }
-  console.log(user);
+  // console.log(user);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

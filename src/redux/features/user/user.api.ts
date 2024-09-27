@@ -35,7 +35,7 @@ const userManagementApi = baseApi.injectEndpoints({
 
     addUser: builder.mutation({
       query: (formData) => ({
-        url: "/auth/create-user",
+        url: "/users/create-user",
         method: "POST",
         body: formData,
       }),
@@ -58,7 +58,7 @@ const userManagementApi = baseApi.injectEndpoints({
     }),
     createAdmin: builder.mutation({
       query: (formData) => ({
-        url: "/auth/create-admin",
+        url: "/users/create-admin",
         method: "POST",
         body: formData,
       }),
